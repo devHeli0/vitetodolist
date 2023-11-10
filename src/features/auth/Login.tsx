@@ -6,7 +6,7 @@ import { login } from '../../store/authSlice';
 
 const Login: React.FC = () => {
   const [password, setPassword] = useState('');
-  const correctPassword = '1234';
+  const correctPassword = import.meta.env.VITE_PASSWORD;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -14,7 +14,6 @@ const Login: React.FC = () => {
     if (password === correctPassword) {
       dispatch(setSessionPassword(password));
       dispatch(login());
-
       alert('Senha correta! Acesso permitido.');
       navigate('/');
     } else {
