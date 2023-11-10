@@ -49,7 +49,7 @@ const TaskList: React.FC = () => {
       <div className="text-center">
         <div className="bg-gray-800 py-4 px-4 sm:px-8 rounded-lg shadow-md w-full sm:max-w-md mx-auto text-slate-700 mb-14 overflow-hidden">
           <h1 className="text-2xl sm:text-4xl font-bold mb-4 text-gray-400">
-            Lista de tarefas
+            Lista de afazeres
           </h1>
           <div className="max-h-80 overflow-y-auto mb-4">
             <ul>
