@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { editTask, removeTask } from '../../store/tasksSlice'; 
+import { removeTask, updateTask } from '../../store/tasksSlice';
 import Modal from '@mui/material/Modal';
 
 interface TaskItemProps {
@@ -32,10 +32,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
   };
 
   const handleEdit = () => {
-    // Dispatch the action to edit the task
-    dispatch(editTask({ id: task.id, updatedTask: editedTask }));
-
-    // After editing, close the modal
+    dispatch(updateTask({ id: task.id, ...editedTask }));
     handleModalClose();
   };
 
