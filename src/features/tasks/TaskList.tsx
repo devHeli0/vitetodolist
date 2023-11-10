@@ -22,15 +22,17 @@ const TaskList: React.FC = () => {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-900">
       <div className="text-center">
-        <div className="bg-gray-800 py-4 px-4 sm:px-8 rounded-lg shadow-md w-full sm:max-w-md mx-auto text-slate-700 mb-14">
+        <div className="bg-gray-800 py-4 px-4 sm:px-8 rounded-lg shadow-md w-full sm:max-w-md mx-auto text-slate-700 mb-14 overflow-hidden">
           <h1 className="text-2xl sm:text-4xl font-bold mb-4 text-gray-400">
             Lista de tarefas
           </h1>
-          <ul>
-            {tasks.map((task: Task) => (
-              <TaskItem key={task.id} task={task} />
-            ))}
-          </ul>
+          <div className="max-h-80 overflow-y-auto mb-4">
+            <ul>
+              {tasks.map((task: Task) => (
+                <TaskItem key={task.id} task={task} />
+              ))}
+            </ul>
+          </div>
 
           <div className="mt-4 flex justify-center">
             <Button
@@ -38,7 +40,7 @@ const TaskList: React.FC = () => {
               color="primary"
               onClick={handleOpenModal}
             >
-              Add Task
+              Adicionar Tarefa
             </Button>
           </div>
 

@@ -1,5 +1,6 @@
-// src/store/tasksSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 export interface Task {
   id: number;
@@ -48,7 +49,16 @@ const tasksSlice = createSlice({
   },
 });
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, tasksSlice.reducer);
+
 export const { addTask, updateTask, removeTask } = tasksSlice.actions;
+
 export const selectTasks = (state: { tasks: TasksState }) =>
   state.tasks.tasks;
-export default tasksSlice.reducer;
+
+export default persistedReducer;

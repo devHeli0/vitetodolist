@@ -1,8 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import tasksReducer from './tasksSlice';
+import { persistStore } from 'redux-persist'; 
 
-export const store = configureStore({
+import persistedReducer from './tasksSlice';
+
+const store = configureStore({
   reducer: {
-    tasks: tasksReducer,
+    tasks: persistedReducer,
   },
 });
+
+const persistor = persistStore(store);
+
+export { store, persistor };
+

@@ -52,13 +52,13 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
           onClick={handleEditClick}
           className="text-blue-500 hover:underline"
         >
-          Edit
+          Editar
         </button>
         <button
           onClick={handleRemove}
           className="text-red-500 hover:underline"
         >
-          Delete
+          Deletar
         </button>
       </div>
       <Modal open={isModalOpen} onClose={handleModalClose}>
@@ -102,13 +102,13 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
               onClick={handleEdit}
               className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
             >
-              Save
+              Salvar
             </button>
             <button
               onClick={handleModalClose}
               className="px-4 py-2 ml-2 bg-gray-300 rounded-md hover:bg-gray-400"
             >
-              Cancel
+              Cancelar
             </button>
           </div>
         </div>
