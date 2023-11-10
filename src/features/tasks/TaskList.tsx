@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { logout } from '../../store/authSlice';
 import { selectTasks } from '../../store/tasksSlice';
+
 import TaskItem from './TaskItem';
+import TaskForm from './TaskForm';
+import { Task } from '../../interfaces/Task_interfaces';
+
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import TaskForm from './TaskForm';
-import { Task } from '../../store/tasksSlice';
+import IconButton from '@mui/material/IconButton';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 
 const TaskList: React.FC = () => {
   const tasks = useSelector(selectTasks);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isLogoutDialogOpen, setLogoutDialogOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -17,6 +29,19 @@ const TaskList: React.FC = () => {
 
   const handleCloseModal = () => {
     setModalOpen(false);
+  };
+
+  const handleOpenLogoutDialog = () => {
+    setLogoutDialogOpen(true);
+  };
+
+  const handleCloseLogoutDialog = () => {
+    setLogoutDialogOpen(false);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    handleCloseLogoutDialog();
   };
 
   return (
@@ -34,7 +59,7 @@ const TaskList: React.FC = () => {
             </ul>
           </div>
 
-          <div className="mt-4 flex justify-center">
+          <div className="mt-4 flex justify-center space-x-4">
             <Button
               variant="contained"
               color="primary"
@@ -42,6 +67,13 @@ const TaskList: React.FC = () => {
             >
               Adicionar Tarefa
             </Button>
+
+            <IconButton
+              color="primary"
+              onClick={handleOpenLogoutDialog}
+            >
+              <ExitToAppIcon />
+            </IconButton>
           </div>
 
           <Modal open={isModalOpen} onClose={handleCloseModal}>
@@ -52,6 +84,27 @@ const TaskList: React.FC = () => {
               />
             </div>
           </Modal>
+
+          <Dialog
+            open={isLogoutDialogOpen}
+            onClose={handleCloseLogoutDialog}
+          >
+            <DialogTitle>Confirmar Logout</DialogTitle>
+            <DialogContent>
+              <p>Tem certeza de que deseja sair?</p>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={handleCloseLogoutDialog}
+                color="primary"
+              >
+                Cancelar
+              </Button>
+              <Button onClick={handleLogout} color="primary">
+                Logout
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </div>
     </div>

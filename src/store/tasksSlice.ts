@@ -1,16 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-export interface Task {
-  id: number;
-  name: string;
-  description: string;
-}
-
-interface TasksState {
-  tasks: Task[];
-}
+import { TasksState, Task } from '../interfaces/Task_interfaces';
 
 const initialState: TasksState = {
   tasks: [],
@@ -54,7 +45,10 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, tasksSlice.reducer);
+const persistedReducer = persistReducer(
+  persistConfig,
+  tasksSlice.reducer
+);
 
 export const { addTask, updateTask, removeTask } = tasksSlice.actions;
 

@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeTask, updateTask } from '../../store/tasksSlice';
 import Modal from '@mui/material/Modal';
-
-interface TaskItemProps {
-  task: {
-    id: number;
-    name: string;
-    description: string;
-  };
-}
+import { TaskItemProps } from '../../interfaces/Task_interfaces';
 
 const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
   const dispatch = useDispatch();
@@ -50,52 +43,42 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
       <div className="mt-4 flex justify-between items-center">
         <button
           onClick={handleEditClick}
-          className="text-blue-500 hover:underline"
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
         >
           Editar
         </button>
         <button
           onClick={handleRemove}
-          className="text-red-500 hover:underline"
+          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
         >
           Deletar
         </button>
       </div>
       <Modal open={isModalOpen} onClose={handleModalClose}>
         <div className="bg-white p-4 w-96 mx-auto mt-20">
-          <h2 className="text-2xl font-semibold mb-4">Edit Task</h2>
-          <form>
-            <div className="mb-4">
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-600"
-              >
-                Name
-              </label>
+          <h2 className="text-2xl font-semibold mb-4">
+            Editar tarefa
+          </h2>
+          <form className="flex flex-col space-y-4">
+            <label className="text-gray-400">
+              Nome:
               <input
                 type="text"
-                id="name"
                 name="name"
                 value={editedTask.name}
                 onChange={handleInputChange}
-                className="mt-1 p-2 w-full border rounded-md"
+                className="px-4 py-2 rounded-md bg-gray-700 text-white"
               />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="description"
-                className="block text-sm font-medium text-gray-600"
-              >
-                Description
-              </label>
+            </label>
+            <label className="text-gray-400">
+              Descrição:
               <textarea
-                id="description"
                 name="description"
                 value={editedTask.description}
                 onChange={handleInputChange}
-                className="mt-1 p-2 w-full border rounded-md"
+                className="px-4 py-2 rounded-md bg-gray-700 text-white"
               />
-            </div>
+            </label>
           </form>
           <div className="flex justify-end mt-4">
             <button
