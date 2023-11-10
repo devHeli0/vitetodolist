@@ -61,7 +61,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ isOpen, onClose }) => {
         <form className="flex flex-col space-y-4">
           <label className="text-gray-400">
             <input
-              placeholder="Tarefa"
+              placeholder="Nome"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}

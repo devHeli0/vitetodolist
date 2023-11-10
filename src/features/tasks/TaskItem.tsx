@@ -61,22 +61,22 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
           </h2>
           <form className="flex flex-col space-y-4">
             <label className="text-gray-400">
-              Nome:
               <input
+                placeholder="Nome"
                 type="text"
                 name="name"
                 value={editedTask.name}
                 onChange={handleInputChange}
-                className="px-4 py-2 rounded-md bg-gray-700 text-white"
+                className="px-4 py-2 rounded-md bg-gray-100 text-gray-800 border border-gray-300 focus:outline-none focus:border-blue-500"
               />
             </label>
             <label className="text-gray-400">
-              Descrição:
               <textarea
+                placeholder="Descrição"
                 name="description"
                 value={editedTask.description}
                 onChange={handleInputChange}
-                className="px-4 py-2 rounded-md bg-gray-700 text-white"
+                className="px-8 py-11 rounded-md bg-gray-100 text-gray-800 border border-gray-300 focus:outline-none focus:border-blue-500"
               />
             </label>
           </form>
